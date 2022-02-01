@@ -10,7 +10,18 @@ Entre as tecnologias utilizadas, estão:
 - [Supabase](https://supabase.com/)
 - [SkynexUI](https://skynexui.dev/)
 
-É possível testar o projeto em: https://hackooncord.vercel.app
+É possível testar o projeto, hospedado na [**Vercel**](https://vercel.com), em: https://hackooncord.vercel.app
+
+## Utilização
+
+Basicamente, o projeto é composto por três páginas:
+- Página principal
+- Chat
+- 404 (para páginas inexistentes)
+
+Na página principal, há um campo de texto para colocar o seu username no Github. Caso o campo seja deixado em branco (Usuário anônimo) ou um nome inválido/inexistente seja escrito, uma foto padrão será utilizada.
+
+Na página de chat, é possível enviar mensagens de texto e stickers pré-definidos, bem como apagar mensagens. Por enquanto, não há controle de permissões sobre quem pode apagar as mensagens.
 
 ## Imagens
 
