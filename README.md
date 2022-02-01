@@ -26,5 +26,6 @@ Na página de chat, é possível enviar mensagens de texto e stickers pré-defin
 ## Imagens
 
 <p align="center">
-  <img alt="Imagem da página principal do projeto" src="https://github.com/InfiniteMarcus/aluracord-hackooncord/blob/main/.docs/index.png" width="800" />
+  <img alt="Imagem da página principal" src="https://github.com/InfiniteMarcus/aluracord-hackooncord/blob/main/.docs/index.png" width="800" />
+  <img alt="Imagem da página de chat" src="https://github.com/InfiniteMarcus/aluracord-hackooncord/blob/main/.docs/chat.png" width="800" />
 </p>
