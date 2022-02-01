@@ -66,7 +66,7 @@ export default function PaginaInicial() {
             </Text>
 
             <TextField
-              placeholder="Seu nome de usuário"
+              placeholder="Seu nome de usuário do Github"
               value={username}
               onChange={ (event) => setUsername(event.target.value) }
               fullWidth
