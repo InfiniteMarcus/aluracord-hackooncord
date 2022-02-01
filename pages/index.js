@@ -1,0 +1,138 @@
+import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import appConfig from '../config.json';
+
+function Titulo(props) {
+  const Tag = props.tag || 'h1';
+  return (
+    <>
+      <Tag>{props.children}</Tag>
+      <style jsx>{`
+        ${Tag} {
+          color: ${appConfig.theme.colors.neutrals['000']};
+          font-size: 24px;
+          font-weight: 600;
+        }
+      `}</style>
+    </>
+  );
+}
+
+export default function PaginaInicial() {
+  const [username, setUsername] = useState('');
+  const roteamento = useRouter();
+
+  return (
+    <>
+      <Box
+        styleSheet={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: appConfig.theme.colors.primary['500'],
+          backgroundImage: 'url(assets/imgs/background.png)',
+          backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+        }}
+      >
+        <Box
+          styleSheet={{
+            border: `1px solid ${appConfig.theme.colors.primary['400']}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: {
+              xs: 'column',
+              sm: 'row',
+            },
+            width: '100%', maxWidth: '700px',
+            borderRadius: '5px', padding: '32px', margin: '16px',
+            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+            backgroundColor: appConfig.theme.colors.neutrals[700],
+          }}
+        >
+          <Box
+            as="form"
+            onSubmit={function (infosDoEvento) {
+              infosDoEvento.preventDefault();
+              roteamento.push(`/chat?username=${username}`);
+            }}
+            styleSheet={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+              width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
+            }}
+          >
+            <Titulo tag="h2">Olá novamente!</Titulo>
+            <Text variant="body2" styleSheet={{ marginTop: '10px', marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
+              {appConfig.name} - por <a href="https://github.com/infinitemarcus" target="_blank">@Infinitemarcus</a>
+            </Text>
+
+            <TextField
+              placeholder="Seu nome de usuário"
+              value={username}
+              onChange={ (event) => setUsername(event.target.value) }
+              fullWidth
+              textFieldColors={{
+                border: `1px solid ${appConfig.theme.colors.primary['400']}`,
+                neutral: {
+                  textColor: appConfig.theme.colors.neutrals[200],
+                  mainColor: appConfig.theme.colors.neutrals[900],
+                  mainColorHighlight: appConfig.theme.colors.primary[500],
+                  backgroundColor: appConfig.theme.colors.neutrals[800],
+                },
+              }}
+            />
+            <Button
+              type='submit'
+              label='Entrar'
+              fullWidth
+              buttonColors={{
+                contrastColor: appConfig.theme.colors.neutrals["000"],
+                mainColor: appConfig.theme.colors.primary[500],
+                mainColorLight: appConfig.theme.colors.primary[400],
+                mainColorStrong: appConfig.theme.colors.primary[600],
+              }}
+            />
+          </Box>
+
+          <Box
+            styleSheet={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              maxWidth: '200px',
+              padding: '16px',
+              backgroundColor: appConfig.theme.colors.neutrals[800],
+              borderColor: appConfig.theme.colors.neutrals[999],
+              borderRadius: '10px',
+              flex: 1,
+              minHeight: '240px',
+              border: `1px solid ${appConfig.theme.colors.primary['400']}`,
+            }}
+          >
+            <Image
+              styleSheet={{
+                borderRadius: '50%',
+                marginBottom: '16px',
+              }}
+              src={username ? `http://github.com/${username}.png` : 'assets/imgs/qwerty.png'}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src='assets/imgs/qwerty.png';
+              }}
+            />
+            <Text
+              variant="body4"
+              styleSheet={{
+                color: appConfig.theme.colors.neutrals[200],
+                backgroundColor: appConfig.theme.colors.neutrals[900],
+                padding: '3px 10px',
+                borderRadius: '1000px'
+              }}
+            >
+              {username || "Usuário anônimo"}
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+    </>
+  );
+}
